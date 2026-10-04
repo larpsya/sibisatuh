@@ -8,7 +8,7 @@ public class KonsumsiHarian {
     
     public KonsumsiHarian(String namaItem, double kalori) {
         this.namaItem = namaItem;
-        setKalori(kalori);
+        this.kalori = kalori;
         totalItem++;
     }
     
