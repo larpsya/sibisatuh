@@ -58,7 +58,7 @@ public class SIBISATUH {
                     double kalori = scanner.nextDouble(); 
                     scanner.nextLine();
                     
-                    if (kalori < 0) {
+                    if (kalori < 0) { // Antisipasi jika input kalori kurang dari 0
                         System.out.println("Gagal! Kalori tidak boleh negatif");
                     } else {
                         if (tipe == 1) {
@@ -66,7 +66,7 @@ public class SIBISATUH {
                             double porsi = scanner.nextDouble();
                             scanner.nextLine();
                             
-                            if (porsi < 0) {
+                            if (porsi < 0) { // Antisipasi
                                 System.out.println("Gagal! Porsi tidak boleh negatif");
                             } else {
                                 logHarian[jumlahData++] = new Makanan(nama, kalori, porsi);
@@ -78,14 +78,14 @@ public class SIBISATUH {
                             double vol = scanner.nextDouble();
                             scanner.nextLine();
                             
-                            if (vol < 0) {
+                            if (vol < 0) { // Antisipasi
                                 System.out.println("Gagal! Volume tidak boleh negatif");
                             } else {
                                 logHarian[jumlahData++] = new Minuman(nama, kalori, vol);
                                 System.out.println("Data berhasil ditambah!");
                             }
                             
-                        } else {
+                        } else { 
                             System.out.println("Gagal! Pilihan tipe tidak valid");
                         }
                     }
