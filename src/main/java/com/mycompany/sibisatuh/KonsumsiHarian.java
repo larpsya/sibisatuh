@@ -23,7 +23,7 @@ public class KonsumsiHarian {
     }
     public void setKalori(double kalori) {
         if(kalori < 0) {
-            System.out.println("Kalori Tidak Boleh 0 atau negatif.");
+            System.out.println("Kalori tidak boleh negatif.");
             this.kalori = 0;
         } else {
             this.kalori = kalori;
@@ -31,5 +31,9 @@ public class KonsumsiHarian {
     }
     public void tampilkanInfo() {
         System.out.printf("Item: %-20s | Kalori: %,.1f kcal%n", this.namaItem, this.kalori);
+    }
+    // Method baru
+    public void caraKonsumsi() {
+        System.out.println("-> Info: Item ini diproses oleh tubuh.");
     }
 }

@@ -22,4 +22,9 @@ public class Minuman extends KonsumsiHarian {
         System.out.printf("[Minuman] Item: %-18s | Kalori: %,6.1f kcal | Volume: %,5.1f ml%n", 
                 super.getNamaItem(), super.getKalori(), this.volumeMl);
     }
+    // Method Baru
+    @Override
+    public void caraKonsumsi() {
+        System.out.println("-> Proses: Glek glek glek");
+    }
 }

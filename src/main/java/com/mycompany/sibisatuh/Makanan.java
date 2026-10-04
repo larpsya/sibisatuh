@@ -22,4 +22,9 @@ public class Makanan extends KonsumsiHarian {
         System.out.printf("[Makanan] Item: %-18s | Kalori: %,6.1f kcal | Porsi: %,5.1f g%n",
                 super.getNamaItem(), super.getKalori(), this.porsiGram);
     }
+    // Method baru
+    @Override
+    public void caraKonsumsi() {
+        System.out.println("-> Proses: Am nyam nyam eum kenyang");
+    }
 }
