@@ -1,7 +1,7 @@
 package com.mycompany.sibisatuh;
 
-// Superclass
-public class KonsumsiHarian {
+// Superclass + abstract
+public abstract class KonsumsiHarian {
     private String namaItem;
     private double kalori;
     public static int totalItem = 0;
@@ -32,8 +32,7 @@ public class KonsumsiHarian {
     public void tampilkanInfo() {
         System.out.printf("Item: %-20s | Kalori: %,.1f kcal%n", this.namaItem, this.kalori);
     }
-    // Method baru
-    public void caraKonsumsi() {
-        System.out.println("-> Info: Item ini diproses oleh tubuh.");
-    }
+    // Abstract Method
+    public abstract void caraKonsumsi();
 }
+

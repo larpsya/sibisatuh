@@ -1,7 +1,7 @@
 package com.mycompany.sibisatuh;
 
-// Subclass
-public class Minuman extends KonsumsiHarian {
+// Subclass + Implements Interface
+public class Minuman extends KonsumsiHarian implements DapatDisimpan {
     private double volumeMl;
     
     public Minuman(String namaItem, double kalori, double volumeMl) {
@@ -26,5 +26,10 @@ public class Minuman extends KonsumsiHarian {
     @Override
     public void caraKonsumsi() {
         System.out.println("-> Proses: Glek glek glek");
+    }
+    // kontrak DapatDisimpan
+    @Override
+    public void panduanPenyimpanan() {
+        System.out.println("-> Simpan: Simpan minuman di lemari pendingin (chiller) agar segar.");
     }
 }

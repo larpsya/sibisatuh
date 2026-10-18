@@ -112,6 +112,8 @@ public class SIBISATUH {
                     for(int i = 0; i < jumlahData; i++) {
                         System.out.print((i + 1) + ". ");
                         logHarian[i].tampilkanInfo();
+                       
+                        System.out.println("");
                     }
                     System.out.println("Total Item: " + KonsumsiHarian.totalItem);
                 }
@@ -136,8 +138,20 @@ public class SIBISATUH {
                         for(int i = 0; i < jumlahData; i++) {
                             System.out.print("- " + logHarian[i].getNamaItem() + " ");
                             
-                            // Runtime Polymorphism (Dynamic Binding)
+                            // Abstract method
                             simulasiProses(logHarian[i]);
+                            
+                            // Interface 1
+                            if (logHarian[i] instanceof DapatDisimpan) {
+                                DapatDisimpan itemSimpan = (DapatDisimpan) logHarian[i];
+                                itemSimpan.panduanPenyimpanan();
+                            }
+
+                            // Interface 2
+                            if (logHarian[i] instanceof DapatDinilai) {
+                                DapatDinilai itemNilai = (DapatDinilai) logHarian[i];
+                                itemNilai.beriRating(5); 
+                            }
                         }
                         System.out.println("Simulasi selesai. Kalori telah diserap");
                     }

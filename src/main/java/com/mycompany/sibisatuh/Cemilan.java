@@ -1,6 +1,7 @@
 package com.mycompany.sibisatuh;
 
-public class Cemilan extends KonsumsiHarian{
+// Subclass + Implements Interface
+public class Cemilan extends KonsumsiHarian implements DapatDinilai {
     private double kadarGula;
 
     public Cemilan(String namaItem, double kalori, double kadarGula) {
@@ -23,5 +24,10 @@ public class Cemilan extends KonsumsiHarian{
     @Override
     public void caraKonsumsi() {
         System.out.println("-> Proses: Enak kali euyyy");
+    }
+    // kontrak DapatDinilai
+    @Override
+    public void beriRating(int bintang) {
+        System.out.println("-> Rating: Cemilan manis ini mendapat " + bintang + " Bintang.");
     }
 }

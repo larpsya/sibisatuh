@@ -1,7 +1,7 @@
 package com.mycompany.sibisatuh;
 
-// Subclass
-public class Makanan extends KonsumsiHarian {
+// Subclass + Implements Interface
+public class Makanan extends KonsumsiHarian implements DapatDisimpan, DapatDinilai {
     private double porsiGram;
     
     public Makanan(String namaItem, double kalori, double porsiGram) {
@@ -26,5 +26,15 @@ public class Makanan extends KonsumsiHarian {
     @Override
     public void caraKonsumsi() {
         System.out.println("-> Proses: Am nyam nyam eum kenyang");
+    }
+    // kontrak DapatDisimpan
+    @Override 
+    public void panduanPenyimpanan() {
+        System.out.println("-> Simpan: Simpan makanan di wadah kedap udara atau di dalam kulkas.");
+    }
+    // kontrak DapatDinilai
+    @Override
+    public void beriRating(int bintang) {
+        System.out.println("-> Rating: Makanan ini mendapat " + bintang + " Bintang dari pengguna.");
     }
 }
