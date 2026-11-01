@@ -4,8 +4,12 @@ package com.mycompany.sibisatuh;
 public class Makanan extends KonsumsiHarian implements DapatDisimpan, DapatDinilai {
     private double porsiGram;
     
-    public Makanan(String namaItem, double kalori, double porsiGram) {
+    // Nambah exception handling pada konstruktor
+    public Makanan(String namaItem, double kalori, double porsiGram) throws Exception {
         super(namaItem, kalori);
+        if (porsiGram <= 0) {
+            throw new Exception("Porsi makanan harus lebih dari 0");
+        }
         this.porsiGram = porsiGram;
     }
     public double getPorsiGram() {

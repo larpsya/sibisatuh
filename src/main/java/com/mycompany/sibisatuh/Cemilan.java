@@ -4,8 +4,12 @@ package com.mycompany.sibisatuh;
 public class Cemilan extends KonsumsiHarian implements DapatDinilai {
     private double kadarGula;
 
-    public Cemilan(String namaItem, double kalori, double kadarGula) {
+    // Nambah exception handling pada konstruktor
+    public Cemilan(String namaItem, double kalori, double kadarGula) throws Exception {
         super(namaItem, kalori);
+        if (kadarGula < 0) {
+            throw new Exception("Kadar gula harus lebih dari 0");
+        }
         this.kadarGula = kadarGula;
     }
 

@@ -4,8 +4,12 @@ package com.mycompany.sibisatuh;
 public class Minuman extends KonsumsiHarian implements DapatDisimpan {
     private double volumeMl;
     
-    public Minuman(String namaItem, double kalori, double volumeMl) {
+    // Nambah exception handling pada konstruktor
+    public Minuman(String namaItem, double kalori, double volumeMl) throws Exception {
         super(namaItem, kalori);
+        if (volumeMl <= 0) {
+            throw new Exception("Volume minuman harus lebih dari 0");
+        }
         this.volumeMl = volumeMl;
     }
     public double getVolumeMl() {

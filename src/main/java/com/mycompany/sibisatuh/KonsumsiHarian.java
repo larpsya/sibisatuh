@@ -6,7 +6,11 @@ public abstract class KonsumsiHarian {
     private double kalori;
     public static int totalItem = 0;
     
-    public KonsumsiHarian(String namaItem, double kalori) {
+    // Update throws exception
+    public KonsumsiHarian(String namaItem, double kalori) throws Exception {
+        if (kalori < 0) {
+            throw new Exception("Nilai kalori tidak valid!");
+        }
         this.namaItem = namaItem;
         this.kalori = kalori;
         totalItem++;
@@ -35,4 +39,3 @@ public abstract class KonsumsiHarian {
     // Abstract Method
     public abstract void caraKonsumsi();
 }
-
