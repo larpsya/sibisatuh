@@ -1,8 +1,10 @@
 package com.mycompany.sibisatuh;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class AktivitasKonsumsi {
     
-    // Asosiasi antara Pengguna dan KonsumsiHarian
     public static void prosesPencernaan(Pengguna user, KonsumsiHarian item) {
         System.out.println("\n===== STRUK PENCERNAAN =====");
         System.out.println("Pengguna : " + user.getNama() + " (" + user.getIdPengguna() + ")");
@@ -21,6 +23,15 @@ public class AktivitasKonsumsi {
             ((DapatDinilai) item).beriRating(5);
         }
         System.out.println("============================");
+
+        // Mencatat riwayat ke log_konsumsi.txt
+        try {
+            FileWriter pipaTulis = new FileWriter("log_konsumsi.txt", true);
+            String log = "Pengguna: " + user.getNama() + " (" + user.getIdPengguna() + ") | Asupan: " + item.getNamaItem() + " (" + item.getKalori() + " kkal)\n";
+            pipaTulis.write(log);
+            pipaTulis.close();
+        } catch (IOException e) {
+            System.out.println("Peringatan: Gagal menulis log aktivitas ke file. " + e.getMessage());
+        }
     }
 }
-

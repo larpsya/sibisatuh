@@ -1,7 +1,9 @@
 package com.mycompany.sibisatuh;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class Sistem {
     private String namaAplikasi;
@@ -70,8 +72,62 @@ public class Sistem {
             throw new KonsumsiException("Gagal: Asupan '" + kataKunci + "' tidak terdaftar.");
         }
     }
+    
+    // Membekukan ArrayList & HashMap ke file biner (.dat)
+    public void simpanDataKeFile() {
+        try {
+            FileOutputStream fileKeluar = new FileOutputStream("data_sibisatuh.dat");
+            ObjectOutputStream mesinPembeku = new ObjectOutputStream(fileKeluar);
+            
+            mesinPembeku.writeObject(this.daftarKonsumsi);
+            mesinPembeku.writeObject(this.dataPengguna);
+            
+            mesinPembeku.close();
+            System.out.println("-> [SYSTEM LOG] Seluruh data berhasil disimpan ke Harddisk!");
+        } catch (Exception e) {
+            System.out.println("-> [SYSTEM ERROR] Gagal menyimpan data: " + e.getMessage());
+        }
+    }
+    
+    // Menghidupkan kembali data dari file biner (.dat)
+    @SuppressWarnings("unchecked")
+    public void muatDataDariFile() {
+        try {
+            File cekFile = new File("data_sibisatuh.dat");
+            if (!cekFile.exists()) return;
 
-    // Getter untuk relasi Asosiasi
+            FileInputStream fileMasuk = new FileInputStream(cekFile);
+            ObjectInputStream mesinPembangkit = new ObjectInputStream(fileMasuk);
+            
+            this.daftarKonsumsi = (ArrayList<KonsumsiHarian>) mesinPembangkit.readObject();
+            this.dataPengguna = (HashMap<String, Pengguna>) mesinPembangkit.readObject();
+            
+            mesinPembangkit.close();
+            System.out.println("-> [SYSTEM LOG] Data sistem berhasil dimuat ulang dari penyimpanan!");
+        } catch (Exception e) {
+            System.out.println("-> [SYSTEM ERROR] Gagal memuat data: " + e.getMessage());
+        }
+    }
+
+    // Membaca log dari file teks (.txt)
+    public void bacaLogAktivitas() {
+        System.out.println("\n--- Riwayat Log Konsumsi (.txt) ---");
+        try {
+            File fileLog = new File("log_konsumsi.txt");
+            if (!fileLog.exists()) {
+                System.out.println("Belum ada catatan log konsumsi.");
+                return;
+            }
+            Scanner mesinBaca = new Scanner(fileLog);
+            while (mesinBaca.hasNextLine()) {
+                System.out.println(mesinBaca.nextLine());
+            }
+            mesinBaca.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Gagal membuka file log.");
+        }
+    }
+
     public Pengguna getPengguna(String id) { 
         return dataPengguna.get(id); }
     public KonsumsiHarian getKonsumsiInt(int index) { 

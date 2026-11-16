@@ -1,6 +1,9 @@
 package com.mycompany.sibisatuh;
 
-public class Pengguna {
+import java.io.Serializable;
+
+public class Pengguna implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String idPengguna;
     private String nama;
 

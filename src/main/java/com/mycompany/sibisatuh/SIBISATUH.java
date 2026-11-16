@@ -7,9 +7,11 @@ public class SIBISATUH {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         
-        // Komposisi & Agregasi
         Sistem aplikasiUtama = new Sistem("Sistem Pencatat Gizi Terpadu");
         aplikasiUtama.bukaAplikasi();
+        
+        // Otomatis muat data lama saat program dimulai (Deserialization)
+        aplikasiUtama.muatDataDariFile();
         
         boolean isRunning = true;
         
@@ -18,10 +20,11 @@ public class SIBISATUH {
             System.out.println("1. Tambah Data Asupan");
             System.out.println("2. Lihat Daftar Asupan");
             System.out.println("3. Cari Data Asupan");
-            System.out.println("4. Kelola Pengguna");
-            System.out.println("5. Catat Pencernaan");
-            System.out.println("6. Keluar");
-            System.out.print("Pilih Menu: ");
+            System.out.println("4. Kelola Pengguna (Agregasi)");
+            System.out.println("5. Catat Pencernaan (Asosiasi)");
+            System.out.println("6. Baca Log Konsumsi (File I/O Teks)");
+            System.out.println("7. Simpan & Keluar (Serialization)");
+            System.out.print("Pilih Menu (1-7): ");
             
             try {
                 int menu = scanner.nextInt();
@@ -109,7 +112,6 @@ public class SIBISATUH {
                             
                             if (noMenu >= 0 && noMenu < aplikasiUtama.getJumlahKonsumsi()) {
                                 KonsumsiHarian itemDimakan = aplikasiUtama.getKonsumsiInt(noMenu);
-                                // Eksekusi Asosiasi
                                 AktivitasKonsumsi.prosesPencernaan(userAktif, itemDimakan);
                             } else {
                                 System.out.println("Gagal: Nomor asupan tidak valid!");
@@ -117,6 +119,13 @@ public class SIBISATUH {
                         }
                     }
                     case 6 -> {
+                        // Membaca isi file teks log_konsumsi.txt
+                        aplikasiUtama.bacaLogAktivitas();
+                    }
+                    case 7 -> {
+                        // Menyimpan seluruh data ke file biner sebelum keluar
+                        System.out.println("Menyimpan sesi ke penyimpanan lokal...");
+                        aplikasiUtama.simpanDataKeFile();
                         System.out.println("Terima kasih telah menggunakan SIBISATUH!");
                         isRunning = false;
                     }
